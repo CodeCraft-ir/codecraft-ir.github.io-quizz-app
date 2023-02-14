@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./output.css" />
+    <script type="module" src="./script.js" defer></script>
+    <title>05 - 100 coders</title>
+  </head>
+  <body>
+    <div class="container text-center mx-auto pb-56">
+      <h1 class="text-black font-extrabold text-7xl m-14">
+        Quizz
+        <span
+          class="before:block before:absolute before:-inset-1 before:-skew-y-3 before:bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 relative inline-block"
+        >
+          <span class="relative text-white">App!</span>
+        </span>
+      </h1>
+      <div class="questions flex flex-col justify-center items-center mx-auto">
+    <div class="loading flex items-center">
+        <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-black" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+          </svg>
+        Loading ...
+    </div>    
+    </div>
+      <div class="finish hidden font-extrabold text-center text-4xl">
+        Tank
+        <span
+          class="before:block before:absolute before:-inset-1 before:-skew-y-3 before:bg-black relative inline-block"
+        >
+          <span class="relative text-white">You!</span>
+        </span>
+        <div class="score p-5">
+          <div class="text-5xl font-extrabold">
+            Score:
+            <span
+              class="scoreNum bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-violet-500"
+            >
+            </span>
+          </div>
+        </div>
+        <div class="refresh">
+          <button
+            class="px-4 py-2 font-semibold text-sm bg-white text-slate-700 border border-slate-300 rounded-md shadow-sm outline outline-2 outline-offset-2 outline-indigo-500 dark:bg-slate-700 dark:text-slate-200 dark:border-transparent capitalize"
+          >
+            play again :)
+          </button>
+        </div>
+      </div>
+    </div>
+    <template id="question">
+      <div class="question p-8" data-id="%%id%%">
+        <h2 class="text-black font-extrabold qtitle text-2xl">%%title%%</h2>
+        <div
+          class="answers m-5 mx-auto flex justify-around w-3/4 gap-4 items-center flex-wrap"
+        ></div>
+      </div>
+    </template>
+    <template id="answer">
+      <div
+        class="answer w-3/4 md:w-2/5 text-center rounded-lg py-5 px-8 border-2 cursor-pointer border-gray-600"
+        data-target="%%id%%"
+        onclick="checkAnswer(this);"
+      >
+        %%answer%%
+      </div>
+    </template>
+  </body>
+</html>
