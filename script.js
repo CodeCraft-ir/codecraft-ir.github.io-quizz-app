@@ -1,11 +1,14 @@
 async function getQuestions(num) {
-  const baseUrl = "https://opentdb.com/api.php?amount=";
-  const qlist = await fetch("https://opentdb.com/api.php?amount=" + num)
-    .then((res) => res.json())
-    .then((response) => response["results"])
-    .catch((er) => console.log(er));
-  return qlist;
+  try {
+    const baseUrl = "https://opentdb.com/api.php?amount=";
+    const qlist = await fetch("https://opentdb.com/api.php?amount=" + num);
+    const response = await qlist.json();
+    return response.results;
+  } catch (error) {
+    throw new Error(error);
+  }
 }
+
 let score = 0;
 const questionsNumber = 5;
 const questions = await getQuestions(questionsNumber);
@@ -37,8 +40,8 @@ function insertQuestion(qId) {
   }
   questionsEl.appendChild(newQuestionEl);
 }
-await insertQuestion(0);
-document.querySelector(".loading").classList.add("hidden")
+insertQuestion(0);
+document.querySelector(".loading").classList.add("hidden");
 document.getElementsByName("answer").addEvent;
 
 window.checkAnswer = function checkAnswer(a) {
@@ -48,15 +51,19 @@ window.checkAnswer = function checkAnswer(a) {
     score++;
   } else {
     document.querySelectorAll('[data-target="' + qId + '"]').forEach((ans) => {
-      if (ans.textContent.trim() == questions[qId].correct_answer) {
-        ans.classList.add("bg-green-500");
-      }
+      ans.textContent.trim() == questions[qId].correct_answer &&
+        ans.classList.add("bg-green-500")
+        
     });
     a.classList.add("bg-red-500");
   }
   document.querySelector('[data-id="' + qId + '"]').classList.add("opacity-30");
-  document.querySelector('[data-id="' + qId + '"]').classList.add("pointer-events-none");
-  document.querySelector('[data-id="' + qId + '"]').classList.add("cursor-not-allowed");
+  document
+    .querySelector('[data-id="' + qId + '"]')
+    .classList.add("pointer-events-none");
+  document
+    .querySelector('[data-id="' + qId + '"]')
+    .classList.add("cursor-not-allowed");
   const newxQId = parseInt(qId) + 1;
   if (!questions[newxQId]) {
     document.querySelector(".finish").classList.remove("hidden");
