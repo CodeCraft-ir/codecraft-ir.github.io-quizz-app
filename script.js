@@ -55,6 +55,8 @@ window.checkAnswer = function checkAnswer(a) {
     a.classList.add("bg-red-500");
   }
   document.querySelector('[data-id="' + qId + '"]').classList.add("opacity-30");
+  document.querySelector('[data-id="' + qId + '"]').classList.add("pointer-events-none");
+  document.querySelector('[data-id="' + qId + '"]').classList.add("cursor-not-allowed");
   const newxQId = parseInt(qId) + 1;
   if (!questions[newxQId]) {
     document.querySelector(".finish").classList.remove("hidden");
